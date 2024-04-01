@@ -1,0 +1,57 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+struct Node {
+  int data ; 
+  Node* next ;
+  Node* prev ; 
+
+  Node(int data, Node* next , Node* prev){
+  this->data = data ; 
+  this->next = next ;
+  this->prev = prev ; 
+}
+
+  Node(int data){
+  this->data = data ;
+  this->next = nullptr;
+  this->prev = nullptr;
+  }
+};
+
+Node* ConvertArrToDLL(vector<int>&v)
+{
+  Node* head = new Node(v[0]);
+  Node* prev = head ; 
+
+  for(int i = 1 ; i < v.size() ; i++){
+    Node* temp = new Node(v[i],nullptr,prev);
+    prev->next = temp;
+    prev = temp;
+  } 
+
+  return head;
+}
+
+
+void PrintDLL(Node* head){
+  Node* temp = head ; 
+
+  while(temp->next != nullptr)
+    {
+      cout<<(temp->data)<<" ";
+      temp = temp->next;
+    }
+}
+
+
+int main(){
+
+  vector <int> arr = {1,2,3,4,5};
+  Node * head = ConvertArrToDLL(arr);
+
+  PrintDLL(head);
+
+  
+}
